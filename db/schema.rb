@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141212194523) do
+ActiveRecord::Schema.define(version: 20141212205236) do
 
   create_table "posts", force: true do |t|
     t.string   "title"
     t.string   "link"
-    t.string   "body"
+    t.text     "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
