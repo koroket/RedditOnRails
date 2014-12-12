@@ -3,6 +3,6 @@ RedditOnRails
 
 Reddit-on-Rails
 
-AUTHORS:
-Masakazu Bando, 
-Jordan Arnesen
+##AUTHORS
+- Masakazu Bando 
+- Jordan Arnesen
