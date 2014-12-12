@@ -4,5 +4,5 @@ RedditOnRails
 Reddit-on-Rails
 
 AUTHORS:
-Masakazu Bando
+Masakazu Bando, 
 Jordan Arnesen
