@@ -13,6 +13,17 @@
 
 ActiveRecord::Schema.define(version: 20141214215131) do
 
+  create_table "comments", force: true do |t|
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "post_id"
+  end
+
+  add_index "comments", ["post_id"], name: "index_comments_on_post_id"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+
   create_table "posts", force: true do |t|
     t.string   "title"
     t.string   "link"
@@ -29,5 +40,16 @@ ActiveRecord::Schema.define(version: 20141214215131) do
     t.datetime "updated_at",      null: false
     t.string   "remember_digest"
   end
+
+  create_table "votes", force: true do |t|
+    t.boolean  "isUpvote"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "post_id"
+  end
+
+  add_index "votes", ["post_id"], name: "index_votes_on_post_id"
+  add_index "votes", ["user_id"], name: "index_votes_on_user_id"
 
 end
