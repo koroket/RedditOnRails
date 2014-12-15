@@ -1,8 +1,20 @@
-<div class="center jumbotron">
-  <h1>Welcome to Reddit on Rails</h1>
+<% if logged_in? %>
+	<div class="center">
+	  <h1>Reddit on Rails</h1>
+  </div>
+    <div>
+      <h3>Post Feed</h3>
+			<ul class="posts">
+				<%= render @posts %>
+			</ul>
+    </div>
+<% else %>
+	<div class="center jumbotron">
+	  <h1>Welcome to Reddit on Rails</h1>
 
-  <h2>
-    This is the home page for <a href="http://masakazubando.com/">Masa</a> and <a href="https://www.google.com/?gws_rd=ssl#q=jordan+arnesen">Jordan's</a> sample application.
-  </h2>
+	  <h2>
+	    This is the home page for <a href="http://masakazubando.com/">Masa</a> and <a href="https://www.google.com/?gws_rd=ssl#q=jordan+arnesen">Jordan's</a> sample application.
+	  </h2>
 
-</div>
+	</div>
+<% end %>
