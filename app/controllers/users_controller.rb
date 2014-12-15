@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   end
   
   def create
+
     @user = User.new(user_params)
     if @user.save
       @user.send_activation_email
@@ -33,6 +34,7 @@ class UsersController < ApplicationController
   # Sends activation email.
   def send_activation_email
     UserMailer.account_activation(self).deliver_now
+
   end
   
   private
