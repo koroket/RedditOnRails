@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
     @comment.user_id = session[:user_id]
     if @comment.save
       flash[:success] = "Post created!"
-      redirect_to root_url
+      redirect_to @post
     else
       @feed_items = []
 				redirect_to root_url	
