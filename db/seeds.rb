@@ -30,6 +30,10 @@ users = User.order(:created_at).take(6)
 50.times do |n|
 	title = "Title-#{n+1}"
 	link = "http://www.google.com"
+
   body = Faker::Lorem.sentence(5)
   users.each { |user| user.posts.create!(title: title, link: link, body: body) }
+# posts = Post.order(:created_at).take(6)
+# posts.each {|post| post.comments.create!(content: body)  }
+
 end

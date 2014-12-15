@@ -9,6 +9,9 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comments = @post.comments
+    @comment = Comment.new
+    session[:current_post_id] = params[:id]
   end
 
   def new
