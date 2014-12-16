@@ -22,10 +22,21 @@ Rails.application.routes.draw do
 
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
-  resources :posts
-  resources :users
 
-  resources :comments
+  resources :posts do
+    member do
+      post 'upvote'
+      post 'unvote'
+      post 'downvote'
+    end
+  end  
+  resources :comments do
+    member do
+      post 'upvote'
+    end
+  end  
+
+  resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
