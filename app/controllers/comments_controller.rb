@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
   # end
 
   def new
-  	@comment = Comment.new
+  	@comment = Comment.new(parent_id: params[:parent_id])
 
   	respond_to do |format|
   	 format.html
@@ -21,14 +21,21 @@ class CommentsController < ApplicationController
 
   def create
   	@post = Post.find(session[:current_post_id])
+
+  	if params[:parent_id].to_i > 0
+    parent = Comment.find_by_id(params[:comment].delete(:parent_id))
+    @comment = parent.children.build(comment_params)
+    else
     @comment = @post.comments.build(comment_params)
     @comment.user_id = session[:user_id]
+    end
+
     if @comment.save
       flash[:success] = "Post created!"
       redirect_to @post
     else
       @feed_items = []
-				redirect_to @post	
+				redirect_to login_url
 	    end
   end
 

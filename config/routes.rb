@@ -25,7 +25,10 @@ Rails.application.routes.draw do
   resources :posts
   resources :users
 
-  resources :comments
+  resources :comments,     only: [ :index, :destroy, :show]
+
+  get '/comments/new/(:parent_id)', to: 'comments#new', as: :new_comment
+  post '/comments/create/(:parent_id)', to: 'comments#create', as: :create_comment
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

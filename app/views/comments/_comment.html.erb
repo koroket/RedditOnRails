@@ -8,7 +8,7 @@
     <%= link_to "delete", comment, method: :delete,
                                      data: { confirm: "You sure?" } %>
     <% end %>
-  <%=link_to "reply", new_comment_path, class: "btn btn-primary", remote: true%>
+  <%=link_to "reply", new_comment_path(comment.id), class: "btn btn-primary", remote: true%>
 
   <%#= render 'shared/error_messages', object: f.object %>
   <div id = "comment-box", style = "display:none;"></div>
