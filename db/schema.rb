@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141216190829) do
+ActiveRecord::Schema.define(version: 20141216205019) do
 
   create_table "comment_hierarchies", id: false, force: true do |t|
     t.integer "ancestor_id",   null: false
@@ -40,12 +40,19 @@ ActiveRecord::Schema.define(version: 20141216190829) do
     t.string   "title"
     t.string   "link"
     t.text     "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "user_id"
+    t.integer  "subreddit_id"
   end
 
+  add_index "posts", ["subreddit_id"], name: "index_posts_on_subreddit_id"
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
+
+  create_table "subreddits", force: true do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"
