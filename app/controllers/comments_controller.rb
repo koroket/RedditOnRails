@@ -23,8 +23,9 @@ class CommentsController < ApplicationController
   	@post = Post.find(session[:current_post_id])
 
   	if params[:parent_id].to_i > 0
-    parent = Comment.find_by_id(params[:comment].delete(:parent_id))
-    @comment = parent.children.build(comment_params)
+    parent = Comment.find_by_id(params[:parent_id])
+    @comment = parent.comments.build(comment_params)
+    @comment.user_id = session[:user_id]
     else
     @comment = @post.comments.build(comment_params)
     @comment.user_id = session[:user_id]

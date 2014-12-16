@@ -1,2 +1,2 @@
-$('#comment-box').html("<%= j (render 'form') %>");
-$('#comment-box').attr("style", "");
+$('#comment-box-<%= @comment.parent_id %>').html("<%= j (render 'form') %>");
+$('#comment-box-<%= @comment.parent_id %>').attr("style", "");
