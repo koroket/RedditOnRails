@@ -1,1 +1,14 @@
 	<%= @post.user.name %>, <%= @post.body %>
+<h1>Comment</h1>
+<%= form_for(@comment) do |f| %>
+  <%#= render 'shared/error_messages', object: f.object %>
+    <%= f.label :content %>
+    <%= f.text_area :content, placeholder: "Compose new post..." %>
+  <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>
+<div>
+  <h3>Comments</h3>
+	<ul class="comments">
+		<%= render @comments %>
+	</ul>
+</div>
