@@ -1,17 +1,18 @@
 class User < ActiveRecord::Base
 
-      has_many :posts#, dependent: :destroy
-      has_many :comments#, dependent: :destroy
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :votes, dependent: :destroy
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
   before_create :create_activation_digest
-    validates :name,  presence: true, length: { maximum: 50 }
-    VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-    validates :email, presence: true, length: { maximum: 255 },
-    format: { with: VALID_EMAIL_REGEX },
-    uniqueness: { case_sensitive: false }
-    has_secure_password
-    validates :password, length: { minimum: 6 }
+  validates :name,  presence: true, length: { maximum: 50 }
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, length: { maximum: 255 },
+  format: { with: VALID_EMAIL_REGEX },
+  uniqueness: { case_sensitive: false }
+  has_secure_password
+  validates :password, length: { minimum: 6 }
     
   # Activates an account.
   def activate
