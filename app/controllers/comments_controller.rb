@@ -10,24 +10,33 @@ class CommentsController < ApplicationController
   #   @comment = Comment.find(params[:id])
   # end
 
-  # def new
-  # 	if logged_in?
-	 #    @comment = current_user.posts.build 
-	 #  else
-	 #  	redirect_to login_url
-	 #  end	
-  # end
+  def new
+  	@comment = Comment.new(parent_id: params[:parent_id])
+
+  	respond_to do |format|
+  	 format.html
+  	 format.js
+  	end
+  end
 
   def create
   	@post = Post.find(session[:current_post_id])
+
+  	if params[:parent_id].to_i > 0
+    parent = Comment.find_by_id(params[:parent_id])
+    @comment = parent.comments.build(comment_params)
+    @comment.user_id = session[:user_id]
+    else
     @comment = @post.comments.build(comment_params)
     @comment.user_id = session[:user_id]
+    end
+
     if @comment.save
       flash[:success] = "Comment created!"
       redirect_to @post
     else
       @feed_items = []
-				redirect_to @post	
+				redirect_to login_url
 	    end
   end
 

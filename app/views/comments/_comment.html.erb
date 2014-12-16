@@ -8,5 +8,11 @@
     <%= link_to "delete", comment, method: :delete,
                                      data: { confirm: "You sure?" } %>
     <% end %>
-    </span>
+  <%=link_to "reply", new_comment_path(comment.id), class: "btn btn-primary", remote: true%>
+
+  <%#= render 'shared/error_messages', object: f.object %>
+  <div id = "comment-box-<%= comment.id %>", style = "display:none;"></div>
+  <ul class="comments">
+    <%= render comment.comments %>
+  </ul>
 </li>

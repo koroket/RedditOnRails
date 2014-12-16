@@ -1,6 +1,6 @@
 <%= render @post %>
 <h1>Comment</h1>
-<%= form_for(@comment) do |f| %>
+<%= form_for(@comment, url: create_comment_path) do |f| %>
   <%#= render 'shared/error_messages', object: f.object %>
     <%= f.label :content %>
     <%= f.text_area :content, placeholder: "Compose new post..." %>
