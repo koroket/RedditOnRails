@@ -10,13 +10,14 @@ class CommentsController < ApplicationController
   #   @comment = Comment.find(params[:id])
   # end
 
-  # def new
-  # 	if logged_in?
-	 #    @comment = current_user.posts.build 
-	 #  else
-	 #  	redirect_to login_url
-	 #  end	
-  # end
+  def new
+  	@comment = Comment.new
+
+  	respond_to do |format|
+  	 format.html
+  	 format.js
+  	end
+  end
 
   def create
   	@post = Post.find(session[:current_post_id])
