@@ -31,7 +31,7 @@ class CommentsController < ApplicationController
     end
 
     if @comment.save
-      flash[:success] = "Post created!"
+      flash[:success] = "Comment created!"
       redirect_to @post
     else
       @feed_items = []
@@ -43,7 +43,7 @@ class CommentsController < ApplicationController
   	@post = Post.find(session[:current_post_id])
   	@comment = Comment.find(params[:id])
     @comment.destroy
-    flash[:success] = "Post deleted"
+    flash[:success] = "Comment deleted"
     redirect_to @post
   end
 

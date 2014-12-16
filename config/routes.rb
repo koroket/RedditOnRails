@@ -22,13 +22,25 @@ Rails.application.routes.draw do
 
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
-  resources :posts
-  resources :users
 
-  resources :comments,     only: [ :index, :destroy, :show]
+  resources :posts do
+    member do
+      post 'upvote'
+      post 'unvote'
+      post 'downvote'
+    end
+  end  
+  resources :comments,  only: [ :index, :destroy, :show] do
+    member do
+      post 'upvote'
+    end
+  end  
 
   get '/comments/new/(:parent_id)', to: 'comments#new', as: :new_comment
   post '/comments/create/(:parent_id)', to: 'comments#create', as: :create_comment
+
+  resources :users
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,4 +1,4 @@
-	<%= @post.user.name %>, <%= @post.body %>
+<%= render @post %>
 <h1>Comment</h1>
 <%= form_for(@comment, url: create_comment_path) do |f| %>
   <%#= render 'shared/error_messages', object: f.object %>

@@ -2,6 +2,7 @@
   <span class="title"><%= link_to post.title, post %></span>
   <span class="link"><%= link_to post.link, post.link %></span>
   <span class="body"><%= post.body %></span>
+  <br>
   <span class="timestamp">Posted <%= time_ago_in_words(post.created_at) %> ago</span>
   <span class="user">by <%= link_to post.user.name, post.user %></span>
   <span class="delete">
@@ -10,5 +11,12 @@
                                      data: { confirm: "You sure?" } %>
     <% end %>
     </span>
-
+  <br>
+  <%= pluralize(post.votes.where(isUpvote: true).count, "upvote") %>, 
+  <%= pluralize(post.votes.where(isUpvote: false).count, "downvote") %> 
+  [
+  <%= link_to '+', upvote_post_path(post), method: :post %> 
+  <%= link_to '0', unvote_post_path(post), method: :post %> 
+  <%= link_to '-', downvote_post_path(post), method: :post %>
+  ]
 </li>
