@@ -40,12 +40,13 @@ class PostsController < ApplicationController
     # TODO: redirect causes error if you delete from posts/post_id
   end
 
+#VOTES
   def upvote
     if current_user_existing_vote.nil?
       @post = Post.find(params[:id])
       @vote = @post.votes.create
       @vote.update_attributes(isUpvote: true, user_id: current_user.id)
-      redirect_to posts_url
+      redirect_to request.referrer
     else
       current_user_existing_vote.update_attribute(:isUpvote, true)
       redirect_to request.referrer
@@ -66,11 +67,12 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
       @vote = @post.votes.create
       @vote.update_attributes(isUpvote: false, user_id: current_user.id)
-      redirect_to posts_url
+      redirect_to request.referrer
     else
       current_user_existing_vote.update_attribute(:isUpvote, false)
       redirect_to request.referrer
-    end  end
+    end  
+  end
 
   private
 

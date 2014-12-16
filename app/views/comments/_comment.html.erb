@@ -1,6 +1,7 @@
 <li id="comment-<%= comment.id %>">
 
   <span class="content"><%= comment.content %></span>
+  <br>
   <span class="timestamp">Posted <%= time_ago_in_words(comment.created_at) %> ago</span>
   <span class="user">by <%= link_to comment.user.name, comment.user %></span>
   <span class="delete">
@@ -8,6 +9,14 @@
     <%= link_to "delete", comment, method: :delete,
                                      data: { confirm: "You sure?" } %>
     <% end %>
+  <br>
+  <%= pluralize(comment.votes.where(isUpvote: true).count, "upvote") %>, 
+  <%= pluralize(comment.votes.where(isUpvote: false).count, "downvote") %> 
+  [
+  <%= link_to '+', upvote_comment_path(comment), method: :post %> 
+  <%= link_to '0', unvote_comment_path(comment), method: :post %> 
+  <%= link_to '-', downvote_comment_path(comment), method: :post %>
+  ]
   <%=link_to "reply", new_comment_path(comment.id), class: "btn btn-primary", remote: true%>
 
   <%#= render 'shared/error_messages', object: f.object %>
