@@ -47,9 +47,47 @@ class CommentsController < ApplicationController
     redirect_to @post
   end
 
+# VOTES
+  def upvote
+    if current_user_existing_vote.nil?
+      @comment = Comment.find(params[:id])
+      @vote = @comment.votes.create
+      @vote.update_attributes(isUpvote: true, user_id: current_user.id)
+      redirect_to request.referrer
+    else
+      current_user_existing_vote.update_attribute(:isUpvote, true)
+      redirect_to request.referrer
+    end
+  end
+
+  def unvote
+    if current_user_existing_vote.nil?
+      redirect_to request.referrer
+    else
+      current_user_existing_vote.destroy
+      redirect_to request.referrer
+    end
+  end
+
+  def downvote
+    if current_user_existing_vote.nil?
+      @comment = Comment.find(params[:id])
+      @vote = @comment.votes.create
+      @vote.update_attributes(isUpvote: false, user_id: current_user.id)
+      redirect_to request.referrer
+    else
+      current_user_existing_vote.update_attribute(:isUpvote, false)
+      redirect_to request.referrer
+    end  
+  end
+
   private
 
     def comment_params
       params.require(:comment).permit(:content)
+    end
+
+    def current_user_existing_vote
+      @vote = current_user.votes.find_by(comment_id: params[:id])
     end
 end

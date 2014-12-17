@@ -77,8 +77,10 @@ ActiveRecord::Schema.define(version: 20141217015708) do
     t.datetime "updated_at", null: false
     t.integer  "user_id"
     t.integer  "post_id"
+    t.integer  "comment_id"
   end
 
+  add_index "votes", ["comment_id"], name: "index_votes_on_comment_id"
   add_index "votes", ["post_id"], name: "index_votes_on_post_id"
   add_index "votes", ["user_id"], name: "index_votes_on_user_id"
 

@@ -30,9 +30,12 @@ Rails.application.routes.draw do
       post 'downvote'
     end
   end  
+  
   resources :comments,  only: [ :index, :destroy, :show] do
     member do
       post 'upvote'
+      post 'unvote'
+      post 'downvote'
     end
   end  
 
