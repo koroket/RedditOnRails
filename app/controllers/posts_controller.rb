@@ -24,13 +24,20 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    if @post.save
+
+    subreddits = Subreddit.where(subname: @post.subname)
+    if subreddits.first
+      @post.subreddit_id = subreddits.first.id
+      if @post.save
       flash[:success] = "Post created!"
       redirect_to posts_url
+      else
+        @feed_items = []
+          render 'new'
+      end
     else
-      @feed_items = []
-				redirect_to root_url	
-	    end
+      render 'new'
+    end
   end
 
   def destroy
@@ -77,7 +84,7 @@ class PostsController < ApplicationController
   private
 
     def post_params
-      params.require(:post).permit(:title, :link, :body)
+      params.require(:post).permit(:title, :link, :body, :subname)
     end
     
     def correct_user
