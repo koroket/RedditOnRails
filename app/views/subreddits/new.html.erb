@@ -4,7 +4,7 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@subreddit) do |f| %>
-      <%= render 'shared/error_messages' %>
+      <%= render 'shared/error_messages', object: f.object %>
       <%= f.label :subname %>
       <%= f.text_field :subname, class: 'form-control' %>
       <%= f.submit "Create new subreddit", class: "btn btn-primary" %>

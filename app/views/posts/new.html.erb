@@ -1,7 +1,7 @@
 <% provide(:title, 'Create Post') %>
 <h1>Create Post</h1>
 <%= form_for(@post) do |f| %>
-  <%#= render 'shared/error_messages', object: f.object %>
+  <%= render 'shared/error_messages', object: f.object %>
     <%= f.label :title %>
     <%= f.text_field :title, class: 'form-control' %>
 
