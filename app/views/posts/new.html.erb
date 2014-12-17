@@ -8,6 +8,9 @@
     <%= f.label :link %>
     <%= f.text_field :link, class: 'form-control' %>
 
+    <%= f.label "Subreddit" %>
+    <%= f.text_field :subname, class: 'form-control' %>
+
     <%= f.label :body %>
     <%= f.text_area :body, placeholder: "Compose new post..." %>
   <%= f.submit "Post", class: "btn btn-primary" %>
