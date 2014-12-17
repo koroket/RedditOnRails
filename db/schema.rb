@@ -68,7 +68,6 @@ ActiveRecord::Schema.define(version: 20141217015708) do
     t.datetime "activated_at"
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
-    t.string   "subname"
   end
 
   create_table "votes", force: true do |t|
