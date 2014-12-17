@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20141217213732) do
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
     t.integer  "karma",             default: 0
+
   end
 
   create_table "votes", force: true do |t|
