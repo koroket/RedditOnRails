@@ -82,5 +82,10 @@ class User < ActiveRecord::Base
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
   end
+
+  # returns user Karma
+  def increment_karma(value)
+    self.update_attribute(:karma, self.karma + value)
+  end
 end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141217015708) do
+ActiveRecord::Schema.define(version: 20141217213732) do
 
   create_table "comment_hierarchies", id: false, force: true do |t|
     t.integer "ancestor_id",   null: false
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20141217015708) do
     t.datetime "activated_at"
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
-    t.string   "subname"
+    t.integer  "karma",             default: 0
   end
 
   create_table "votes", force: true do |t|

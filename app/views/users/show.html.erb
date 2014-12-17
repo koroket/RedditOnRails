@@ -1,5 +1,7 @@
-<h2><%= @user.name %></h2>
-<h2><%= @user.email %></h2>
+<h2>
+<%= render 'users/profile_short', user: @user %>
+- <%= @user.email %>
+</h2>
 <%= link_to "(edit user info)", edit_user_path %>
 <div>
   <h3>Posts</h3>
