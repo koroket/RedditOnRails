@@ -35,7 +35,7 @@ class CommentsController < ApplicationController
       redirect_to @post
     else
       @feed_items = []
-				redirect_to login_url
+				render 'new'
 	    end
   end
 

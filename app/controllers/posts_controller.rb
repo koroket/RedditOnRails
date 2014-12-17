@@ -33,10 +33,10 @@ class PostsController < ApplicationController
       redirect_to posts_url
       else
         @feed_items = []
-          redirect_to login_url
+          render 'new'
       end
     else
-      redirect_to root_url
+      render 'new'
     end
   end
 

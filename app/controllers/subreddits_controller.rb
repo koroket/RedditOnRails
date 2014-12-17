@@ -5,7 +5,7 @@ class SubredditsController < ApplicationController
   	if subreddits.first
   	    @posts = subreddits.first.posts
   	else
-  		redirect_to root_url
+  		render 'new'
   	end
 
   end
