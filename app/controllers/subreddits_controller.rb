@@ -16,16 +16,13 @@ class SubredditsController < ApplicationController
 
   def create
   	@subreddit = Subreddit.new(subreddit_params)
-  	subreddits = Subreddit.where(subname: @subreddit.subname)
-    if subreddits.first
-      render 'new'
-    else
+
       if @subreddit.save
       redirect_to root_url
       else
       render 'new'
-    end
-    end
+
+      end
   end
 
   private

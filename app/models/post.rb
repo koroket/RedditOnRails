@@ -1,3 +1,11 @@
+class SubnameValidator < ActiveModel::EachValidator
+  def validate_each(record, attribute, value)
+    unless !!Subreddit.where(subname: value).first
+      record.errors[attribute] << (options[:message] || "Subreddit does not exist")
+    end
+  end
+end
+
 class Post < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
@@ -7,6 +15,7 @@ class Post < ActiveRecord::Base
   validates :user_id, presence: true
   validates :body, presence: true
   validates :subreddit_id, presence: true
+  validates :subname, subname: true
 
   def update_sort_score
   	upvotes = self.votes.where(isUpvote: true).count
