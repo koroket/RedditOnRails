@@ -1,4 +1,5 @@
 <li id="post-<%= post.id %>">
+  <span class="score"><%= post.sort_score %></span>
   <span class="title"><%= link_to post.title, post %></span>
   <span class="link"><%= link_to post.link, post.link %></span>
   <span class="body"><%= post.body %></span>
