@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20141218013240) do
     t.datetime "activated_at"
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
+    t.string   "subname"
     t.integer  "karma",             default: 0
   end
 
