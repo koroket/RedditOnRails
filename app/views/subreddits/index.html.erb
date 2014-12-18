@@ -1,0 +1,10 @@
+<div class="center">
+  <h1>Subreddit Index</h1>
+</div>
+<ul class="subreddits">
+	<% @subreddits.each do |subreddit| %>
+		<li>
+		<%= link_to "/r/#{subreddit.subname}", "/r/#{subreddit.subname}" %>
+		</li>
+	<% end %>
+</ul>

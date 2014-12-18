@@ -1,4 +1,8 @@
 class SubredditsController < ApplicationController
+  def index
+    @subreddits = Subreddit.all
+  end
+
   def show
   	@subname = params[:subname]
   	subreddits = Subreddit.where(subname: params[:subname])
@@ -21,7 +25,7 @@ class SubredditsController < ApplicationController
       render 'new'
     else
       if @subreddit.save
-      redirect_to root_url
+      redirect_to show_subreddit_path(subname: @subreddit.subname)
       else
       render 'new'
     end

@@ -47,7 +47,7 @@ Rails.application.routes.draw do
   
   get '/r/:subname', to: 'subreddits#show', as: :show_subreddit
 
-  resources :subreddits, only: [:new, :create]
+  resources :subreddits, only: [:new, :create, :index]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
