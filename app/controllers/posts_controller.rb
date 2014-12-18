@@ -36,6 +36,7 @@ class PostsController < ApplicationController
           render 'new'
       end
     else
+      # subreddit doesn't exist, return to page without making new post
       render 'new'
     end
   end
