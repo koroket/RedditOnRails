@@ -1,26 +1,28 @@
 <li id="post-<%= post.id %>">
   <!-- <span class="score"><%#= post.sort_score %></span> -->
-  <span class="subreddit"><%= link_to "/r/#{post.subname}", "/r/#{post.subname}" %></span>
-  <span class="title"> -- <%= link_to post.title, post.link %></span>
-  <br>
-  <span class="body"><%= post.body %></span>
-  <br>
-  <span class="link"><%= link_to "comments", post %></span>
+  <span class="votes">
+    +<%= post.votes.where(isUpvote: true).count %> /  
+    -<%= post.votes.where(isUpvote: false).count %>
+    [
+    <%= link_to '+', upvote_post_path(post), method: :post %> 
+    <%= link_to '0', unvote_post_path(post), method: :post %> 
+    <%= link_to '-', downvote_post_path(post), method: :post %>
+    ]
+  </span>
+  <span class="title"><%= link_to post.title, post.link %></span>
+  <span class="delete">
+  <% if current_user?(post.user) %>
+  <%= link_to "delete", post, method: :delete,
+                                   data: { confirm: "You sure?" } %>
+  <% end %>
+  </span>
+  <!-- <br> -->
+  <!-- <span class="body"><%#= post.body %></span> -->
   <br>
   <span class="timestamp">Posted <%= time_ago_in_words(post.created_at) %> ago</span>
   <span class="user">by <%= render 'users/profile_short', user: post.user %></span>
-  <span class="delete">
-    <% if current_user?(post.user) %>
-    <%= link_to "delete", post, method: :delete,
-                                     data: { confirm: "You sure?" } %>
-    <% end %>
-    </span>
+  <span class="subreddit">to <%= link_to "/r/#{post.subname}", "/r/#{post.subname}" %></span>
   <br>
-  <%= pluralize(post.votes.where(isUpvote: true).count, "upvote") %>, 
-  <%= pluralize(post.votes.where(isUpvote: false).count, "downvote") %> 
-  [
-  <%= link_to '+', upvote_post_path(post), method: :post %> 
-  <%= link_to '0', unvote_post_path(post), method: :post %> 
-  <%= link_to '-', downvote_post_path(post), method: :post %>
-  ]
+  <span class="link"><%= link_to "#{post.comments.count} comments", post %></span>
 </li>
+<br>

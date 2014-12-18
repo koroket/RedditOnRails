@@ -1,5 +1,6 @@
-<h2>Subreddit: <%=@subname%><h2>
-<h3>Posts</h3>
-<ul class="posts">
+<div class="center">
+  <h1><%= "/r/#{@subname}" %></h1>
+</div>
+<ol class="posts">
 	<%= render @posts %>
-</ul>
+</ol>
