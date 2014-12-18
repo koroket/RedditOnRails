@@ -44,6 +44,7 @@ Rails.application.routes.draw do
 
   resources :users
 
+  
   get '/r/:subname', to: 'subreddits#show', as: :show_subreddit
 
   resources :subreddits, only: [:new, :create]

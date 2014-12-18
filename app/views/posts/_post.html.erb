@@ -1,11 +1,11 @@
 <li id="post-<%= post.id %>">
   <!-- <span class="score"><%#= post.sort_score %></span> -->
-  <span class="subreddit"><%= link_to "/r/#{post.subname}", post.subname %></span>
+  <span class="subreddit"><%= link_to "/r/#{post.subname}", "/r/#{post.subname}" %></span>
   <span class="title"> -- <%= link_to post.title, post.link %></span>
   <br>
   <span class="body"><%= post.body %></span>
   <br>
-  <span class="link"><%= link_to "comments", post.link %></span>
+  <span class="link"><%= link_to "comments", post %></span>
   <br>
   <span class="timestamp">Posted <%= time_ago_in_words(post.created_at) %> ago</span>
   <span class="user">by <%= render 'users/profile_short', user: post.user %></span>
