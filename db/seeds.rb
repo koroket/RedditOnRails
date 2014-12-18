@@ -26,13 +26,17 @@ User.create!(name:  "Example User",
                activated_at: Time.zone.now)
 end
 
+Subreddit.create!(subname: 'test')
+
 users = User.order(:created_at).take(6)
 50.times do |n|
 	title = "Title-#{n+1}"
 	link = "http://www.google.com"
-
+  subreddit = "test"
   body = Faker::Lorem.sentence(5)
-  users.each { |user| user.posts.create!(title: title, link: link, body: body) }
+  users.each do |user| 
+    user.posts.create!(title: title, link: link, subreddit_id: subreddit, body: body)
+  end
 # posts = Post.order(:created_at).take(6)
 # posts.each {|post| post.comments.create!(content: body)  }
 
