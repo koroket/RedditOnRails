@@ -111,6 +111,7 @@ class PostsController < ApplicationController
     end
 
     def current_user_existing_vote
-      @vote = current_user.votes.find_by(post_id: params[:id])
+      # @vote = current_user.votes.find_by(post_id: params[:id])
+      @vote = current_user.votes.find_by(votable_id: params[:id])
     end
 end

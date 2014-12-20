@@ -94,6 +94,6 @@ class CommentsController < ApplicationController
     end
 
     def current_user_existing_vote
-      @vote = current_user.votes.find_by(comment_id: params[:id])
+      @vote = current_user.votes.find_by(votable_id: params[:id])
     end
 end
