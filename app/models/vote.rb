@@ -1,7 +1,8 @@
 class Vote < ActiveRecord::Base
-  belongs_to :post
+  # belongs_to :post
+  belongs_to :votable, polymorphic: true
   belongs_to :user
-  belongs_to :comment
+  # belongs_to :comment
   default_scope -> { order(created_at: :desc) }
   validates :user_id, presence: true
 end

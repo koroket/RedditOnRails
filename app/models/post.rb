@@ -7,8 +7,9 @@ class SubnameValidator < ActiveModel::EachValidator
 end
 
 class Post < ActiveRecord::Base
-  has_many :comments, dependent: :destroy
-  has_many :votes, dependent: :destroy
+  has_many :comments, as: :commentable, dependent: :destroy
+  # has_many :comments, dependent: :destroy
+  has_many :votes, as: :votable, dependent: :destroy
   belongs_to :user
   belongs_to :subreddit
   default_scope -> { order(sort_score: :desc) }

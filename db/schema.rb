@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141218013240) do
+ActiveRecord::Schema.define(version: 20141219233159) do
 
   create_table "comment_hierarchies", id: false, force: true do |t|
     t.integer "ancestor_id",   null: false
@@ -24,12 +24,14 @@ ActiveRecord::Schema.define(version: 20141218013240) do
 
   create_table "comments", force: true do |t|
     t.text     "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.integer  "user_id"
     t.integer  "post_id"
     t.integer  "parent_id"
     t.integer  "comment_id"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
   end
 
   add_index "comments", ["comment_id"], name: "index_comments_on_comment_id"
@@ -70,17 +72,18 @@ ActiveRecord::Schema.define(version: 20141218013240) do
     t.datetime "activated_at"
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
-    t.string   "subname"
     t.integer  "karma",             default: 0
   end
 
   create_table "votes", force: true do |t|
     t.boolean  "isUpvote"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "user_id"
     t.integer  "post_id"
     t.integer  "comment_id"
+    t.integer  "votable_id"
+    t.string   "votable_type"
   end
 
   add_index "votes", ["comment_id"], name: "index_votes_on_comment_id"
