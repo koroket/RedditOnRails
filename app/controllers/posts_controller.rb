@@ -61,7 +61,9 @@ class PostsController < ApplicationController
     else
       current_user_existing_vote.update_attribute(:isUpvote, true)
       #changing existing vote from -1 to a +1, so karma adjusted by 2
-      @post.user.increment_karma(2)
+      if !current_user_existing_vote.isUpvote
+        @post.user.increment_karma(2)
+      end
       redirect_to request.referrer
     end
 
@@ -94,7 +96,9 @@ class PostsController < ApplicationController
     else
       current_user_existing_vote.update_attribute(:isUpvote, false)
       #changing existing vote from +1 to a -1, so karma adjusted by -2
-      @post.user.increment_karma(-2)
+      if current_user_existing_vote.isUpvote
+        @post.user.increment_karma(-2)
+      end
       redirect_to request.referrer
     end  
   end
@@ -111,7 +115,6 @@ class PostsController < ApplicationController
     end
 
     def current_user_existing_vote
-      # @vote = current_user.votes.find_by(post_id: params[:id])
       @vote = current_user.votes.find_by(votable_id: params[:id])
     end
 end
