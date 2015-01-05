@@ -8,7 +8,6 @@ end
 
 class Post < ActiveRecord::Base
   has_many :comments, as: :commentable, dependent: :destroy
-  # has_many :comments, dependent: :destroy
   has_many :votes, as: :votable, dependent: :destroy
   belongs_to :user
   belongs_to :subreddit
@@ -22,7 +21,6 @@ class Post < ActiveRecord::Base
   	upvotes = self.votes.where(isUpvote: true).count
   	downvotes = self.votes.where(isUpvote: false).count
   	votes = upvotes - downvotes
-  	# age = Time.now - self.created_at
   	age = Time.diff(Time.now, self.created_at)[:hour]
   	gravity = 1.8
   	new_score = (votes - 1) / (age + 2) ** gravity
